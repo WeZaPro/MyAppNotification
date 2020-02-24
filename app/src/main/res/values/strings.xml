@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AuthenticatorApp</string>
+    <string name="login_fragment">login fragment</string>
+    <string name="notiUser_fragment">Notification Users fragment</string>
+    <string name="notiDetail_fragment">Notification Detail fragment</string>
+    <string name="register_fragment">Register fragment</string>
+
+    <string name="tab_text_1">Speed Dial</string>
+    <string name="tab_text_2">Recents</string>
+    <string name="tab_text_3">Contacts</string>
+
+</resources>

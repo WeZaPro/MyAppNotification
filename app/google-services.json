@@ -1,0 +1,122 @@
+{
+  "project_info": {
+    "project_number": "522054101726",
+    "firebase_url": "https://casestudy-3a46a.firebaseio.com",
+    "project_id": "casestudy-3a46a",
+    "storage_bucket": "casestudy-3a46a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522054101726:android:09c835737ffdab5790704f",
+        "android_client_info": {
+          "package_name": "com.example.myappnotification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522054101726-hae6dqlcap172aelauijunnadf794spo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myappnotification",
+            "certificate_hash": "4d8e9bfddedeae898c0a4e84c4795f5ca6ff0a2f"
+          }
+        },
+        {
+          "client_id": "522054101726-2uqid4s5cljhvjgrk96rsf4n8fs9anu9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8oN0Au3h7r5ZKyvc5OVng9mTmCWgytZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522054101726-2uqid4s5cljhvjgrk96rsf4n8fs9anu9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522054101726:android:2c870de502d236fe90704f",
+        "android_client_info": {
+          "package_name": "example.com.myappreadrecyclerviewfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522054101726-aub8qarehi6g1ou0eo3t4ln63lvp220b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "example.com.myappreadrecyclerviewfirebase",
+            "certificate_hash": "bff06b9ecc7e0c3e71bf9ecb98fa9c630af4f105"
+          }
+        },
+        {
+          "client_id": "522054101726-2uqid4s5cljhvjgrk96rsf4n8fs9anu9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8oN0Au3h7r5ZKyvc5OVng9mTmCWgytZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522054101726-2uqid4s5cljhvjgrk96rsf4n8fs9anu9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522054101726:android:e7ffa8fc48e9e9d790704f",
+        "android_client_info": {
+          "package_name": "net.smallacademy.authenticatorapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522054101726-mc64h7n5ei543scs56sbleoeku0dudhl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.smallacademy.authenticatorapp",
+            "certificate_hash": "bff06b9ecc7e0c3e71bf9ecb98fa9c630af4f105"
+          }
+        },
+        {
+          "client_id": "522054101726-2uqid4s5cljhvjgrk96rsf4n8fs9anu9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8oN0Au3h7r5ZKyvc5OVng9mTmCWgytZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522054101726-2uqid4s5cljhvjgrk96rsf4n8fs9anu9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
