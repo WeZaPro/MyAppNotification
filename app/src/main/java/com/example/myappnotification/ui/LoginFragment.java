@@ -96,8 +96,12 @@ public class LoginFragment extends Fragment {
                 mfusedLocationClient.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        Lat = location.getLatitude();
-                        Lon = location.getLongitude();
+                        if(location != null){
+                            Lat = location.getLatitude();
+                            Lon = location.getLongitude();
+
+                            Toast.makeText(getActivity(),"Long "+location.getLongitude(),Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -140,23 +144,6 @@ public class LoginFragment extends Fragment {
 
                 });
 
-                /*mCreateBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //startActivity(new Intent(getActivity(),Register.class));//********************
-
-                        Toast.makeText(getActivity(),"click ",Toast.LENGTH_SHORT).show();
-
-                        // go to RecyclerView Fragment
-                        RegisterFragment registerFragment = new RegisterFragment();
-                        getActivity().getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.contentContainer,registerFragment)
-                                .addToBackStack("")
-                                .commit();
-
-                    }
-                });*/
             }
         });
 

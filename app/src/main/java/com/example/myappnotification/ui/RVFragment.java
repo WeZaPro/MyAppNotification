@@ -16,13 +16,22 @@ import android.widget.Toast;
 import com.example.myappnotification.MyAdapter.MyRecyclerViewAdapter;
 import com.example.myappnotification.MyModel.MyUserRegister;
 import com.example.myappnotification.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
+
+import javax.annotation.Nullable;
 
 public class RVFragment extends Fragment {
 
@@ -32,6 +41,11 @@ public class RVFragment extends Fragment {
     DatabaseReference databaseReference;
 
     ArrayList<MyUserRegister> listData = new ArrayList<>();
+
+    //test
+    /*FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+    String userId;*/
 
     public RVFragment() {
         // Required empty public constructor
@@ -48,24 +62,33 @@ public class RVFragment extends Fragment {
             _myRecyclerView = v.findViewById(R.id.myRecyclerView);
             _myRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren() ){
-                        MyUserRegister myUserRegister = dataSnapshot1.getValue(MyUserRegister.class);
-                        listData.add(myUserRegister);
+            //test
+            /*fAuth = FirebaseAuth.getInstance();
+            fStore = FirebaseFirestore.getInstance();
+            userId = fAuth.getCurrentUser().getUid();*/
+
+
+
+
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren() ){
+                            MyUserRegister myUserRegister = dataSnapshot1.getValue(MyUserRegister.class);
+                            listData.add(myUserRegister);
+                        }
+
+                        myAdapter = new MyRecyclerViewAdapter(getActivity(),listData);
+                        _myRecyclerView.setAdapter(myAdapter);
                     }
 
-                    myAdapter = new MyRecyclerViewAdapter(getActivity(),listData);
-                    _myRecyclerView.setAdapter(myAdapter);
-                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(getActivity(),"error "+databaseError,Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(getActivity(),"error "+databaseError,Toast.LENGTH_SHORT).show();
-                }
-            });
 
         }
 

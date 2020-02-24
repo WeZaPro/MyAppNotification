@@ -21,15 +21,38 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             tools:context=".ui.ui.MainActivity"
-            android:background="#BFFFC107">
+            android:background="#BFFFC107"
+            android:padding="15dp">
 
             <TextView
-                android:id="@+id/tv"
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="text"/>
+                android:text="name"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="email"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/tvToken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="token"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/tvCurrUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User"
+                android:textSize="20sp"/>
 
 
         </LinearLayout>
