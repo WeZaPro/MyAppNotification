@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 
 import javax.annotation.Nullable;
 
-public class RVFragment extends Fragment {
+public class RVFragment extends Fragment implements OnBackPressedListener{
 
     View v;
     RecyclerView _myRecyclerView;
@@ -64,6 +65,10 @@ public class RVFragment extends Fragment {
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        // ใส่เพราะ เมื่อ Insert ข้อมูลแล้ว RecyclerView Dupplicate Data View
+                        listData.clear();
+
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren() ){
                             MyUserLogin myUserLogin = dataSnapshot1.getValue(MyUserLogin.class);
                             listData.add(myUserLogin);
@@ -85,6 +90,12 @@ public class RVFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void doBack() {
+        getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+
+
     // ใส่แล้วเวลาหมุนจอ Error
     /*@Override
     public void onDetach() {
@@ -98,4 +109,6 @@ public class RVFragment extends Fragment {
                 .addToBackStack("")
                 .commit();
     }*/
+
+
 }
