@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.myappnotification.MyAdapter.MyRecyclerViewAdapter;
+import com.example.myappnotification.MyInterface.MyListener;
+import com.example.myappnotification.MyModel.MyUserLogin;
 import com.example.myappnotification.MyModel.MyUserRegister;
 import com.example.myappnotification.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,17 +42,12 @@ public class RVFragment extends Fragment {
     MyRecyclerViewAdapter myAdapter;
     DatabaseReference databaseReference;
 
-    ArrayList<MyUserRegister> listData = new ArrayList<>();
-
-    //test
-    /*FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
-    String userId;*/
+    ArrayList<MyUserLogin> listData = new ArrayList<>();
+    MyListener myListener;
 
     public RVFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,24 +59,17 @@ public class RVFragment extends Fragment {
             _myRecyclerView = v.findViewById(R.id.myRecyclerView);
             _myRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-            //test
-            /*fAuth = FirebaseAuth.getInstance();
-            fStore = FirebaseFirestore.getInstance();
-            userId = fAuth.getCurrentUser().getUid();*/
 
-
-
-
-                databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("login");
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren() ){
-                            MyUserRegister myUserRegister = dataSnapshot1.getValue(MyUserRegister.class);
-                            listData.add(myUserRegister);
+                            MyUserLogin myUserLogin = dataSnapshot1.getValue(MyUserLogin.class);
+                            listData.add(myUserLogin);
                         }
 
-                        myAdapter = new MyRecyclerViewAdapter(getActivity(),listData);
+                        myAdapter = new MyRecyclerViewAdapter(getActivity(),listData,myListener);
                         _myRecyclerView.setAdapter(myAdapter);
                     }
 
@@ -95,7 +85,8 @@ public class RVFragment extends Fragment {
         return v;
     }
 
-    @Override
+    // ใส่แล้วเวลาหมุนจอ Error
+    /*@Override
     public void onDetach() {
         super.onDetach();
 
@@ -106,5 +97,5 @@ public class RVFragment extends Fragment {
                 .replace(R.id.contentContainer,loginFragment)
                 .addToBackStack("")
                 .commit();
-    }
+    }*/
 }

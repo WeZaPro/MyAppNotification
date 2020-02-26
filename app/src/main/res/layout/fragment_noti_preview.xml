@@ -8,13 +8,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/notiDetail_fragment" />
+            android:id="@+id/tvShowEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ShowEmailt" />
+
+        <TextView
+            android:id="@+id/tvShowUID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ShowUID" />
+
+        <TextView
+            android:id="@+id/tvShowUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ShowUser" />
+
+        <TextView
+            android:id="@+id/tvShowToken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ShowToken" />
+
+        <Button
+            android:id="@+id/btnSendNotify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="send Notify"
+            />
 
 
     </LinearLayout>

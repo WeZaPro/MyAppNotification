@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myappnotification.MyConstance.Constance;
+import com.example.myappnotification.MyModel.MyUserLogin;
 import com.example.myappnotification.MyModel.MyUserRegister;
 import com.example.myappnotification.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -95,9 +96,6 @@ public class RegisterFragment extends Fragment {
                     .addToBackStack("")
                     .commit();
 
-
-
-
         }
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +107,8 @@ public class RegisterFragment extends Fragment {
                 final String phone    = mPhone.getText().toString();
 
                 getLocationAddress();
+
+                // insert Token
                 SharedPreferences sharedPref = getActivity().getSharedPreferences(Constance.MY_PREFS, Context.MODE_PRIVATE);
                 token = sharedPref.getString(Constance.TOKEN, "");
 
@@ -167,12 +167,19 @@ public class RegisterFragment extends Fragment {
 
                             // Write a message to the database **********
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("users");
+                            DatabaseReference myRegisRef = database.getReference("users");
+                            // test***********
+                            DatabaseReference myLoginRef = database.getReference("login");
 
                             MyUserRegister models = new MyUserRegister(userID,fullName,email,password,LAT,LON,token);
+                            //test*******
+                            MyUserLogin myUserLogin = new MyUserLogin(userID,fullName,email,LAT,LON,token);
                             Log.d("check","TOKEN INIT "+token);
 
-                            myRef.child(userID).setValue(models);
+                            myRegisRef.child(userID).setValue(models);
+                            //test******
+                            myLoginRef.child(userID).setValue(myUserLogin);
+
                             Toast.makeText(getActivity(), "User Created."+fullName, Toast.LENGTH_SHORT).show();
 
 

@@ -1,7 +1,10 @@
 package com.example.myappnotification.MyModel;
 
 
-public class MyUserRegister {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class MyUserRegister implements Parcelable {
 
     String uid;
     String name;
@@ -24,6 +27,28 @@ public class MyUserRegister {
         this.token = token;
     }
 
+
+    protected MyUserRegister(Parcel in) {
+        uid = in.readString();
+        name = in.readString();
+        email = in.readString();
+        password = in.readString();
+        Lat = in.readDouble();
+        Long = in.readDouble();
+        token = in.readString();
+    }
+
+    public static final Creator<MyUserRegister> CREATOR = new Creator<MyUserRegister>() {
+        @Override
+        public MyUserRegister createFromParcel(Parcel in) {
+            return new MyUserRegister(in);
+        }
+
+        @Override
+        public MyUserRegister[] newArray(int size) {
+            return new MyUserRegister[size];
+        }
+    };
 
     public String getUid() {
         return uid;
@@ -79,5 +104,21 @@ public class MyUserRegister {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(uid);
+        dest.writeString(name);
+        dest.writeString(email);
+        dest.writeString(password);
+        dest.writeDouble(Lat);
+        dest.writeDouble(Long);
+        dest.writeString(token);
     }
 }

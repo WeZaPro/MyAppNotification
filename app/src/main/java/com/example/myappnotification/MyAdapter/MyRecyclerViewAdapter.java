@@ -1,6 +1,7 @@
 package com.example.myappnotification.MyAdapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myappnotification.MyInterface.MyListener;
+import com.example.myappnotification.MyModel.MyUserLogin;
 import com.example.myappnotification.MyModel.MyUserRegister;
 import com.example.myappnotification.R;
+import com.example.myappnotification.ui.NotiPreviewFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -21,18 +25,21 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
 
     Context context;
-    ArrayList<MyUserRegister> listData;
+    ArrayList<MyUserLogin> listData;
 
     //test ****************
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userId;
 
+    MyListener myListener;
 
 
-    public MyRecyclerViewAdapter(Context context, ArrayList<MyUserRegister> listData) {
+
+    public MyRecyclerViewAdapter(Context context, ArrayList<MyUserLogin> listData,MyListener myListener) {
         this.context = context;
         this.listData = listData;
+        this.myListener = myListener;
 
     }
 
@@ -85,7 +92,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                 @Override
                 public void onClick(View v) {
                     int item = (int) v.getTag();
-                    Toast.makeText(context,"item is "+listData.get(item).getEmail(),Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context,"item is "+listData.get(item).getToken(),Toast.LENGTH_SHORT).show();
+                    MyUserLogin myUserLogin = listData.get(item);
+                    myListener.myCallBack(myUserLogin);
+
                 }
             });
         }
@@ -95,7 +105,22 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public int getItemViewType(int position) {
         return super.getItemViewType(position);
 
-        // ซ่อน Current User
+        //TODO ซ่อน Current User****************************
 
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        if(context instanceof MyListener){
+            myListener = (MyListener) context;
+        }
+    }
+
+
+    @Override
+    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+        myListener = null;
     }
 }
