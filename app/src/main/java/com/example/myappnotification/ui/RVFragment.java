@@ -84,7 +84,6 @@ public class RVFragment extends Fragment implements OnBackPressedListener{
                     }
                 });
 
-
         }
 
         return v;

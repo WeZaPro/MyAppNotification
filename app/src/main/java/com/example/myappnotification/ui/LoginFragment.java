@@ -81,7 +81,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
 
                 Toast.makeText(getActivity(), "Click " , Toast.LENGTH_SHORT).show();
-                getLatLon();
+                getLocation();
 
                 final String email = mEmail.getText().toString().trim();
                 final String password = mPassword.getText().toString().trim();
@@ -108,41 +108,6 @@ public class LoginFragment extends Fragment {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                // Track Location
-                /*client.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-
-                        if (location != null) {
-
-                            LAT = location.getLatitude();
-                            LON = location.getLongitude();
-                            Log.d("check", "Add LONG " + location.getLongitude());
-
-                            *//*Toast.makeText(getActivity(), "Long " + location.getLongitude(), Toast.LENGTH_SHORT).show();*//*
-                        }
-
-                    }
-
-                });*/
-
-
-
-
-              /*mfusedLocationClient.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if(location != null){
-                            Lat = location.getLatitude();
-                            Lon = location.getLongitude();
-                            Log.d("LAT","LAT mFush: "+location.getLatitude());
-
-                            Toast.makeText(getActivity(),"Long "+location.getLongitude(),Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });*/
-
-
                 // authenticate the user
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -167,6 +132,10 @@ public class LoginFragment extends Fragment {
                             // go to RecyclerView Fragment
                             RVFragment rvFragment = new RVFragment();
                             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contentContainer, rvFragment).addToBackStack("").commit();
+
+                            //test call Current User
+                            String currUser = fAuth.getCurrentUser().getUid();
+                            Toast.makeText(getActivity(),"Current User : "+currUser,Toast.LENGTH_LONG).show();
 
 
                         } else {
@@ -193,7 +162,7 @@ public class LoginFragment extends Fragment {
         return v;
     }
 
-    private void getLatLon() {
+    private void getLocation() {
 
         client = LocationServices.getFusedLocationProviderClient(getActivity());
         client.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
